@@ -1,0 +1,7 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": { "declaration": false, "noEmit": true },
+  "include": ["generated"],
+  // generate.test.ts type-checks the files it writes; document.test.ts and merge.test.ts write theirs meanwhile.
+  "exclude": ["generated/document-*/**", "generated/merge-*/**", "generated/alias-*/**"]
+}

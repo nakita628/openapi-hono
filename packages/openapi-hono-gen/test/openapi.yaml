@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Todos
+  version: 1.0.0
+tags:
+  - name: todos
+paths:
+  /:
+    get:
+      operationId: getIndex
+      responses:
+        '200':
+          description: The service
+          content:
+            text/plain:
+              schema: { type: string }
+  /todos:
+    get:
+      operationId: getTodos
+      tags: [todos]
+      summary: List the todos
+      parameters:
+        - { name: done, in: query, required: false, schema: { type: boolean } }
+        - { name: limit, in: query, required: false, schema: { type: integer, minimum: 1 } }
+        - { $ref: '#/components/parameters/RequestId' }
+      responses:
+        '200':
+          description: The todos
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Todo' } }
+    post:
+      tags: [todos]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/NewTodo' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Todo' }
+        '400': { $ref: '#/components/responses/Error' }
+  /todos/{todoId}:
+    parameters:
+      - { name: todoId, in: path, required: true, schema: { type: integer } }
+    get:
+      tags: [todos]
+      parameters:
+        - { name: session, in: cookie, required: false, schema: { type: string } }
+      responses:
+        '200':
+          description: The todo
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Todo' }
+        '404': { $ref: '#/components/responses/Error' }
+    delete:
+      tags: [todos]
+      responses:
+        '204': { description: Deleted }
+  /notes:
+    post:
+      operationId: postNote
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                text: { type: string }
+                pinned: { type: boolean }
+              required: [text]
+      responses:
+        '200':
+          description: The note
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Tree' }
+components:
+  schemas:
+    Todo:
+      type: object
+      properties:
+        id: { type: integer }
+        title: { type: string }
+        done: { type: boolean }
+      required: [id, title, done]
+    NewTodo:
+      type: object
+      properties:
+        title: { type: string, minLength: 1 }
+      required: [title]
+    Tree:
+      type: object
+      properties:
+        text: { type: string }
+        children: { type: array, items: { $ref: '#/components/schemas/Tree' } }
+      required: [text]
+    Error:
+      type: object
+      properties:
+        message: { type: string }
+      required: [message]
+  parameters:
+    RequestId:
+      name: X-Request-Id
+      in: header
+      required: false
+      schema: { type: string }
+  responses:
+    Error:
+      description: An error
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }

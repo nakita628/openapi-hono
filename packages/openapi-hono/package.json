@@ -1,0 +1,103 @@
+{
+  "name": "openapi-hono",
+  "version": "0.0.1",
+  "description": "Hono with OpenAPI routes declared by createRoute(): app.openapi(route, handler), requests and responses checked with any Standard Schema (Zod, Valibot, ArkType, Effect), and the OpenAPI document",
+  "keywords": [
+    "hono",
+    "openapi",
+    "standard-schema",
+    "typescript",
+    "valibot",
+    "zod"
+  ],
+  "homepage": "https://github.com/nakita628/openapi-hono/tree/main/packages/openapi-hono#readme",
+  "bugs": {
+    "url": "https://github.com/nakita628/openapi-hono/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nakita628/openapi-hono.git",
+    "directory": "packages/openapi-hono"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "./src/augment.ts",
+    "./src/index.ts",
+    "./src/effect.ts",
+    "./src/valibot.ts",
+    "./dist/index.mjs",
+    "./dist/effect.mjs",
+    "./dist/valibot.mjs"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts",
+    "./effect": "./src/effect.ts",
+    "./valibot": "./src/valibot.ts"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "./client": {
+        "types": "./dist/client.d.mts",
+        "default": "./dist/client.mjs"
+      },
+      "./effect": {
+        "types": "./dist/effect.d.mts",
+        "default": "./dist/effect.mjs"
+      },
+      "./valibot": {
+        "types": "./dist/valibot.d.mts",
+        "default": "./dist/valibot.mjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "vp pack",
+    "check": "vp check",
+    "check:fix": "vp check --fix",
+    "test": "vp test run"
+  },
+  "devDependencies": {
+    "@hono/standard-validator": "^0.4.1",
+    "@standard-schema/spec": "^1.1.0",
+    "@types/node": "26.6.6",
+    "@valibot/to-json-schema": "^1.8.0",
+    "arktype": "^2.2.9",
+    "effect": "^4.1.2",
+    "hono": "^4.13.16",
+    "typescript": "7.0.2",
+    "valibot": "^1.5.0",
+    "vite-plus": "1.4.0",
+    "zod": "^4.6.7"
+  },
+  "peerDependencies": {
+    "@hono/standard-validator": ">=0.4.0",
+    "@standard-schema/spec": ">=1.0.0",
+    "@valibot/to-json-schema": ">=1.0.0",
+    "effect": ">=4.0.0",
+    "hono": ">=4.13.0",
+    "valibot": ">=1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@valibot/to-json-schema": {
+      "optional": true
+    },
+    "effect": {
+      "optional": true
+    },
+    "valibot": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
