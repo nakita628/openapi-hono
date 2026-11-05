@@ -1,6 +1,6 @@
 {
   "name": "openapi-hono",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Hono with OpenAPI routes declared by createRoute(): app.openapi(route, handler), requests and responses checked with any Standard Schema (Zod, Valibot, ArkType, Effect), and the OpenAPI document",
   "keywords": [
     "hono",

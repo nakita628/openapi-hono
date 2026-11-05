@@ -1,6 +1,6 @@
 {
   "name": "openapi-hono-gen",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Generate openapi-hono routes, handlers, the app and its client from an OpenAPI or TypeSpec document",
   "keywords": [
     "arktype",
