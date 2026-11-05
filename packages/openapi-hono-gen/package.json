@@ -1,0 +1,67 @@
+{
+  "name": "openapi-hono-gen",
+  "version": "0.1.0",
+  "description": "Generate openapi-hono routes, handlers, the app and its client from an OpenAPI or TypeSpec document",
+  "keywords": [
+    "arktype",
+    "codegen",
+    "effect",
+    "hono",
+    "openapi",
+    "valibot",
+    "zod"
+  ],
+  "homepage": "https://github.com/nakita628/openapi-hono/tree/main/packages/openapi-hono-gen#readme",
+  "bugs": {
+    "url": "https://github.com/nakita628/openapi-hono/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nakita628/openapi-hono.git",
+    "directory": "packages/openapi-hono-gen"
+  },
+  "bin": {
+    "openapi-hono-gen": "dist/bin.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "build": "vp pack",
+    "check": "vp check",
+    "check:fix": "vp check --fix",
+    "test": "vp test run"
+  },
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^13.1.0",
+    "@effect/platform-node": "4.1.2",
+    "@typespec/compiler": "^1.17.0",
+    "@typespec/openapi3": "^1.17.0",
+    "effect": "4.1.2",
+    "oas-truth": "0.6.1",
+    "oxc-parser": "^0.157.0",
+    "oxfmt": "^0.75.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "@valibot/to-json-schema": "^1.8.0",
+    "arktype": "^2.2.9",
+    "hono": "^4.13.16",
+    "openapi-hono": "workspace:*",
+    "typescript": "7.0.2",
+    "valibot": "^1.5.0",
+    "vite-plus": "1.4.0",
+    "zod": "^4.6.7"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}
